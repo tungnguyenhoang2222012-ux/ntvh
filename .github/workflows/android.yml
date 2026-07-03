@@ -1,52 +1,46 @@
-name: Trường PTDT Nội Trú THCS - THPT Vân Hồ
+name: Tự động Build APK Trường Vân Hồ
 
 on:
   push:
-    branches: [ "main", "master" ] # Tự động chạy khi bro push code lên nhánh main hoặc master
+    branches: [ "main", "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest # Chạy trên siêu máy tính Linux của GitHub
+    runs-on: ubuntu-latest
 
     steps:
-    # 1. Lấy code từ repository của bro xuống máy ảo
     - name: Checkout Source Code
       uses: actions/checkout@v4
 
-    # 2. Setup môi trường Node.js để chạy lệnh npm
     - name: Cài đặt Node.js
       uses: actions/setup-node@v4
       with:
-        node-level: 18
+        node-version: 18
 
-    # 3. Setup môi trường Java JDK chuẩn (Né sạch lỗi JAVA_HOME ở máy local)
     - name: Cài đặt Java JDK 17
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
         java-version: '17'
 
-    # 4. Setup bộ công cụ Android SDK (Né sạch lỗi ANDROID_HOME)
     - name: Cài đặt Android SDK
       uses: android-actions/setup-android@v3
 
-    # 5. Cài đặt Cordova toàn cục trên máy ảo
     - name: Cài đặt Apache Cordova
       run: npm install -g cordova
 
-    # 6. Khởi tạo nền tảng Android cho dự án Cordova
     - name: Cấu hình Cordova Android
       run: |
         cordova platform add android
         
-    # 7. Đập lệnh build xuất file APK tối thượng
-    - name: Biên dịch ra file APK
-      run: cordova build android --release
+    # SỬA CHỖ NÀY: Đổi từ --release sang --debug để ép nổ máy ra file APK không cần chứng chỉ
+    - name: Biên dịch ra file APK Debug
+      run: cordova build android --debug
 
-    # 8. Đẩy file APK lên hệ thống lưu trữ của GitHub để bro tải về
+    # SỬA CHỖ NÀY: Chỉ đích danh vị trí file debug mặc định của Cordova
     - name: Xuất bản file APK về máy
       uses: actions/upload-artifact@v4
       with:
-        name: VanHoApp-Release-APK
-        path: |
-          **/*.apk
+        name: VanHoApp-Debug-APK
+        path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
