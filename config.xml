@@ -15,4 +15,5 @@
     <preference name="Fullscreen" value="false" />
     <preference name="orientation" value="portrait" />
     <preference name="BackgroundColor" value="#ffffff" />
+    <icon src="https://npwziezagmpvwkjtglhl.supabase.co/storage/v1/object/public/media_files/z7971270047717_30dbfae306decc6c83aae041a36b43ef.jpg" />
 </widget>
