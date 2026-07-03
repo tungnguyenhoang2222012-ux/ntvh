@@ -1,4 +1,4 @@
-name: Trường PTDT Nội Trú TJ+HCS - THPT Vân Hồ
+name: Tự động Build APK Trường Vân Hồ
 
 on:
   push:
@@ -34,13 +34,11 @@ jobs:
       run: |
         cordova platform add android
         
-    # SỬA CHỖ NÀY: Đổi từ --release sang --debug để ép nổ máy ra file APK không cần chứng chỉ
     - name: Biên dịch ra file APK Debug
       run: cordova build android --debug
 
-    # SỬA CHỖ NÀY: Chỉ đích danh vị trí file debug mặc định của Cordova
     - name: Xuất bản file APK về máy
       uses: actions/upload-artifact@v4
       with:
-        name: VanHoApp-Debug-APK
+        name: VanHoMedia-Icon-APK
         path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
