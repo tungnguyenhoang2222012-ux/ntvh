@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.vanho.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>VanHoApp</name>
+    <description>Trường PTDT Nội Trú THCS &amp; THPT Vân Hồ</description>
+    <author email="dev@vanho.school" href="https://yourwebsite.com">Bảo</author>
+    
+    <content src="https://truongptdtntthcsthptvanho.vercel.app/" />
+    
+    <allow-navigation href="https://truongptdtntthcsthptvanho.vercel.app/*" />
+    <allow-navigation href="https://*.supabase.co/*" />
+    <allow-navigation href="https://*.googleusercontent.com/*" />
+    
+    <access origin="*" />
+    
+    <preference name="Fullscreen" value="false" />
+    <preference name="orientation" value="portrait" />
+    <preference name="BackgroundColor" value="#ffffff" />
+</widget>
